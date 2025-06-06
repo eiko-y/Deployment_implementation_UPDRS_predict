@@ -92,6 +92,8 @@ Running Locally
 * uvicorn main:app --reload --port 8001
 * Access Swagger UI at http://127.0.0.1:8001/docs to test the API.
 
+  test_JSON and test_output provided as example test case. 
+
 
 ## Deploying on AWS SageMaker
 1. Build and push the Docker container image to ECR.
