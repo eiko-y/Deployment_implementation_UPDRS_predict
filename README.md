@@ -50,8 +50,17 @@ Docker for application packaging and dependency management
 
 AWS SageMaker for model hosting, endpoint management, and scalable deployment
 
+## AWS Sagemaker Deployment Steps 
+See deploy_updrs_fastapi.sh for script summarizing:
+1. Docker build
+2. Tag and push to ECR
+3. Create model on AWS Sagemaker
+4. Create endpoint configuration
+5. create endpoint
+
 ## Project Structure Highlights
 fastapi-deploy
+In the root directory, Dockerfile, serve.sh, adn deploy_updrs_fastapi.sh
 app/ — Contains the trained model file (model.pkl) and FastAPI application code (main.py) and requirements.txt
 
 
@@ -73,7 +82,7 @@ S3 Bucket: Stores model artifacts (model.pkl) and deployment scripts. The bucket
 ECR (Elastic Container Registry): Hosts the Docker image containing the FastAPI application and dependencies, enabling easy and repeatable deployment to SageMaker.
 
 
-SageMaker Endpoint: A fully managed HTTPS endpoint hosting the model for real-time inference. The endpoint name is updrs-endpoint-v5, configured to auto-scale based on request load.
+SageMaker Endpoint: A fully managed HTTPS endpoint hosting the model for real-time inference. The endpoint name is fastapi-updrs-endpoint, configured to auto-scale based on request load.
 
 ## Usage
 Running Locally
@@ -92,7 +101,12 @@ Running Locally
 * uvicorn main:app --reload --port 8001
 * Access Swagger UI at http://127.0.0.1:8001/docs to test the API.
 
-  test_JSON and test_output provided as example test case. 
+  test_JSON and test_output provided as example test case.
+
+5. Run in the Docker container
+   * ```bash
+docker build -t fastapi-model .
+docker run -p 8082:8080 fastapi-model serve
 
 
 ## Deploying on AWS SageMaker
