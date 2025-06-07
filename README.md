@@ -99,7 +99,7 @@ Running Locally
 1. Build and push the Docker container image to ECR.
 
 
-2. Upload model artifacts and inference scripts to the S3 bucket.
+2. Upload model artifacts and inference scripts to the S3 bucket. Ensure that all IAM permissions are configured correctly. 
 
 
 3. Create a SageMaker model referencing the container and model data.
